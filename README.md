@@ -1,4 +1,4 @@
-# tugas
- Tugas sekolah saya di SMK TELKOM MALANG <br>
- Attaqi Fadhil Arifianto
+# Tugas
+ Tugas sekolah saya di SMK TELKOM MALANG <br><br>
+ Nama: Attaqi Fadhil Arifianto
  
