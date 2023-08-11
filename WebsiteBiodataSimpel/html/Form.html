@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Form</title>
+</head>
+<body>
+    <header>
+        <h2>Biodata</h2>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="Jadwal.html">Jadwal</a>
+            <a href="Form.html">Form</a>
+        </nav>
+    </header>
+    <main class="form">
+        <h2>Form</h2>
+        <form>
+            <!--text-->
+            <label for="nama">Nama:</label><br>
+            <input type="text" id="nama" name="nama"><br>
+            <!--textarea-->
+            <label for="alamat">Alamat:</label><br>
+            <textarea name="alamat" id="alamat" cols="30" rows="10"></textarea><br>
+            <!--select-->
+            <label for="kelas">Kelas:</label>
+            <select name="kelas" id="kelas">
+                <option value="10">X</option>
+                <option value="11">XI</option>
+                <option value="12">XII</option>
+            </select><br>
+            <label for="kelamin">Jenis Kelamin:</label>
+            <select name="kelamin" id="kelamin">
+                <option value="laki">L</option>
+                <option value="perempuan">P</option>
+            </select><br>
+            <label for="agama">Agama:</label>
+            <select name="agama" id="agama">
+                <option value="islam">Islam</option>
+                <option value="kristen">kristen</option>
+                <option value="katolik">katolik</option>
+                <option value="buddha">Buddha</option>
+                <option value="hindu">Hindu</option>
+                <option value="konghucu">Konghucu</option>
+            </select><br>
+            <!--radio-->
+            <p>jurusan:</p>
+            <input type="radio" name="jurusan" id="rpl" value="rpl">
+            <label for="rpl">RPL</label>
+            <input type="radio" name="jurusan" id="tkj" value="tkj">
+            <label for="tkj">TKJ</label><br>
+            <!--date-->
+            <label for="tanggallahir">Tanggal Lahir:</label>
+            <input type="date" id="tanggallahir" name="tanggallahir"><br>
+            <!--submit-->
+            <input type="submit" value="kirim">
+        </form>
+    </main>
+    <footer>
+        <p>Copyright &copy; 2023, Attaqi Fadhil</p>
+    </footer>
+</body>
+</html>

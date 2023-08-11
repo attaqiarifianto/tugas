@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    background-color: #333;
+    padding: 15px 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    margin: 30px;
+    text-decoration: none;
+    color: #FFF;
+}
+
+main {
+    margin-top: 15px;
+    min-height: calc(100vh - 111px);
+    
+}
+
+footer {
+    background-color: #333;
+    color: #FFF;
+    text-align: center;
+    padding: 10px;
+}
+
+table {
+    margin: auto;
+}
+
+.tabel-jadwal {
+    text-align: center;
+    width: 100%;
+}
+
+.form {
+    padding-left: 20px;
+}
+
