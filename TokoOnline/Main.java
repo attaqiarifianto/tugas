@@ -1,46 +1,11 @@
+package TokoOnline;
 import java.util.*;
 
-class Produk {
-    String nama;
-    int harga;
-
-    public Produk(String nama, int harga) {
-        this.nama = nama;
-        this.harga = harga;
-    }
-}
-
-class Pengguna {
-    String username;
-    String password;
-    List<Produk> keranjang;
-
-    public Pengguna(String username, String password) {
-        this.username = username;
-        this.password = password;
-        this.keranjang = new ArrayList<>();
-    }
-
-    public void tambahKeKeranjang(Produk produk, int jumlah) {
-        for (int i = 0; i < jumlah; i++) {
-            keranjang.add(produk);
-        }
-    }
-
-    public int hitungTotal() {
-        int total = 0;
-        for (Produk produk : keranjang) {
-            total += produk.harga;
-        }
-        return total;
-    }
-}
-
-class SistemBelanjaOnline {
+class TokoOnline {
     List<Pengguna> pengguna;
     List<Produk> produk;
 
-    public SistemBelanjaOnline() {
+    public TokoOnline() {
         pengguna = new ArrayList<>();
         produk = new ArrayList<>();
     }
@@ -71,7 +36,7 @@ class SistemBelanjaOnline {
     }
 
     public static void main(String[] args) {
-        SistemBelanjaOnline sistem = new SistemBelanjaOnline();
+        TokoOnline sistem = new TokoOnline();
 
         sistem.daftarPengguna("fadhil", "fadhil9090");
         sistem.tambahProduk("Laptop", 8_000_000);
