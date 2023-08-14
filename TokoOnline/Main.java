@@ -1,8 +1,8 @@
 package TokoOnline;
 
-class Main {
+public class Main {
     public static void main(String[] args) {
-        TokoOnline app = new TokoOnline();
-        app.run();
+        TokoOnline toko = new TokoOnline();
+        toko.run();
     }
 }

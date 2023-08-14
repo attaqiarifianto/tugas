@@ -3,26 +3,19 @@ package TokoOnline;
 import java.util.*;
 
 class TokoOnline {
-    List<Pengguna> daftarPengguna;
-    List<Produk> daftarProduk;
+    private List<Pengguna> daftarPengguna;
+    private List<Produk> daftarProduk;
+    private Scanner scanner;
 
     public TokoOnline() {
         daftarPengguna = new ArrayList<>();
         daftarProduk = new ArrayList<>();
+        scanner = new Scanner(System.in);
     }
 
     public void run() {
-        daftarPengguna("user1", "password1", 100);
-        daftarPengguna("user2", "password2", 200);
-        daftarPengguna("user3", "password3", 400);
-        tambahProduk("Laptop", 800);
-        tambahProduk("Ponsel", 400);
-        tambahProduk("Headphone", 50);
-        tambahProduk("Monitor", 200);
-        tambahProduk("Mouse", 40);
-        tambahProduk("Tablet", 500);
+        inisialisasiDataAwal();
 
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Selamat datang di toko online!");
 
         while (true) {
@@ -31,86 +24,84 @@ class TokoOnline {
             System.out.print("Kata Sandi: ");
             String password = scanner.nextLine();
 
-            Pengguna penggunaMasuk = null;
-
-            for (Pengguna pengguna : daftarPengguna) {
-                if (pengguna.username.equals(username) && pengguna.password.equals(password)) {
-                    penggunaMasuk = pengguna;
-                    break;
-                }
-            }
+            Pengguna penggunaMasuk = login(username, password);
 
             if (penggunaMasuk != null) {
                 System.out.println("Login berhasil!\n");
-                System.out.println("Saldo Anda: Rp" + penggunaMasuk.saldo);
-
-                while (true) {
-                    System.out.println("\n1. Tampilkan Produk");
-                    System.out.println("2. Tambah ke Keranjang");
-                    System.out.println("3. Lihat Keranjang");
-                    System.out.println("4. Tampilkan Saldo");
-                    System.out.println("5. Isi Saldo");
-                    System.out.println("6. Checkout");
-                    System.out.println("7. Keluar");
-                    System.out.print("Pilih opsi: ");
-                    int pilihan = scanner.nextInt();
-                    scanner.nextLine();
-
-                    switch (pilihan) {
-                        case 1:
-                            tampilkanProduk();
-                            break;
-                        case 2:
-                            tampilkanProduk();
-                            System.out.print("Pilih produk untuk ditambahkan ke keranjang: ");
-                            int indeksProduk = scanner.nextInt() - 1;
-                            System.out.print("Jumlah produk yang ingin dibeli: ");
-                            int jumlahProduk = scanner.nextInt();
-                            scanner.nextLine();
-                            tambahKeKeranjang(penggunaMasuk, daftarProduk.get(indeksProduk), jumlahProduk);
-                            break;
-                        case 3:
-                            tampilkanKeranjang(penggunaMasuk);
-                            break;
-                        case 4:
-                            tampilkanSaldo(penggunaMasuk);
-                            break;
-                        case 5:
-                            isiSaldo(penggunaMasuk);
-                            break;
-                        case 6:
-                            checkout(penggunaMasuk);
-                            break;
-                        case 7:
-                            System.out.println("Keluar.");
-                            break;
-                        default:
-                            System.out.println("Opsi tidak valid. Silakan coba lagi.");
-                            break;
-                    }
-
-                    if (pilihan == 7) {
-                        break;
-                    }
-                }
-
+                menuUtama(penggunaMasuk);
                 break;
             } else {
                 System.out.println("Nama pengguna atau kata sandi tidak valid. Silakan coba lagi.");
             }
         }
+
         scanner.close();
     }
 
-    public void daftarPengguna(String username, String password, int saldo) {
-        daftarPengguna.add(new Pengguna(username, password, saldo));
+    private void inisialisasiDataAwal() {
+        daftarPengguna.add(new Pengguna("fadhil", "fadhil9090", 100));
+        daftarPengguna.add(new Pengguna("user2", "password2", 200));
+        daftarPengguna.add(new Pengguna("user3", "password3", 400));
+
+        daftarProduk.add(new Produk("Laptop", 800));
+        daftarProduk.add(new Produk("Ponsel", 400));
+        daftarProduk.add(new Produk("Headphone", 50));
+        daftarProduk.add(new Produk("Monitor", 200));
+        daftarProduk.add(new Produk("Mouse", 40));
+        daftarProduk.add(new Produk("Tablet", 500));
     }
 
-    public void tambahProduk(String nama, int harga) {
-        daftarProduk.add(new Produk(nama, harga));
+    private Pengguna login(String username, String password) {
+        for (Pengguna pengguna : daftarPengguna) {
+            if (pengguna.username.equals(username) && pengguna.password.equals(password)) {
+                return pengguna;
+            }
+        }
+        return null;
     }
 
-    public void tampilkanProduk() {
+    private void menuUtama(Pengguna pengguna) {
+        while (true) {
+            System.out.println("\n1. Tampilkan Produk");
+            System.out.println("2. Tambah ke Keranjang");
+            System.out.println("3. Lihat Keranjang");
+            System.out.println("4. Tampilkan Saldo");
+            System.out.println("5. Isi Saldo");
+            System.out.println("6. Checkout");
+            System.out.println("7. Keluar");
+            System.out.print("Pilih opsi: ");
+
+            int pilihan = Integer.parseInt(scanner.nextLine());
+
+            switch (pilihan) {
+                case 1:
+                    tampilkanProduk();
+                    break;
+                case 2:
+                    tambahProdukKeKeranjang(pengguna);
+                    break;
+                case 3:
+                    tampilkanKeranjang(pengguna);
+                    break;
+                case 4:
+                    tampilkanSaldo(pengguna);
+                    break;
+                case 5:
+                    isiSaldo(pengguna);
+                    break;
+                case 6:
+                    checkout(pengguna);
+                    break;
+                case 7:
+                    System.out.println("Keluar.");
+                    return;
+                default:
+                    System.out.println("Opsi tidak valid. Silakan coba lagi.");
+            }
+        }
+    }
+
+    private void tampilkanProduk() {
         System.out.println("Produk Tersedia:");
         for (int i = 0; i < daftarProduk.size(); i++) {
             Produk produk = daftarProduk.get(i);
@@ -118,14 +109,44 @@ class TokoOnline {
         }
     }
 
-    public void tambahKeKeranjang(Pengguna pengguna, Produk produk, int jumlah) {
+    private void tambahProdukKeKeranjang(Pengguna pengguna) {
+        tampilkanProduk();
+        System.out.print("Pilih produk untuk ditambahkan ke keranjang: ");
+
+        int indeksProduk = -1;
+        try {
+            indeksProduk = Integer.parseInt(scanner.nextLine()) - 1;
+        } catch (NumberFormatException e) {
+            System.out.println("Masukan tidak valid. Pemilihan produk dibatalkan.");
+            return;
+        }
+
+        if (indeksProduk >= 0 && indeksProduk < daftarProduk.size()) {
+            Produk produk = daftarProduk.get(indeksProduk);
+
+            System.out.print("Jumlah produk yang ingin dibeli: ");
+            int jumlahProduk = -1;
+            try {
+                jumlahProduk = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Masukan tidak valid. Penambahan produk dibatalkan.");
+                return;
+            }
+
+            tambahKeKeranjang(pengguna, produk, jumlahProduk);
+        } else {
+            System.out.println("Pilihan produk tidak valid.");
+        }
+    }
+
+    private void tambahKeKeranjang(Pengguna pengguna, Produk produk, int jumlah) {
         for (int i = 0; i < jumlah; i++) {
             pengguna.keranjang.add(produk);
         }
         System.out.println("Produk ditambahkan ke keranjang.");
     }
 
-    public void tampilkanKeranjang(Pengguna pengguna) {
+    private void tampilkanKeranjang(Pengguna pengguna) {
         System.out.println("Keranjang Anda:");
         for (Produk produk : pengguna.keranjang) {
             System.out.println(produk.nama + " - Rp" + produk.harga);
@@ -133,15 +154,19 @@ class TokoOnline {
         System.out.println("Total: Rp" + hitungTotal(pengguna));
     }
 
-    public void tampilkanSaldo(Pengguna pengguna) {
+    private void tampilkanSaldo(Pengguna pengguna) {
         System.out.println("Saldo Anda: Rp" + pengguna.saldo);
     }
 
-    public void isiSaldo(Pengguna pengguna) {
-        Scanner scanner = new Scanner(System.in);
+    private void isiSaldo(Pengguna pengguna) {
         System.out.print("Jumlah saldo yang ingin diisi: ");
-        int saldoTambah = scanner.nextInt();
-        scanner.nextLine();
+        int saldoTambah = -1;
+        try {
+            saldoTambah = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Masukan tidak valid. Penambahan saldo dibatalkan.");
+            return;
+        }
 
         if (saldoTambah > 0) {
             pengguna.saldo += saldoTambah;
@@ -149,10 +174,9 @@ class TokoOnline {
         } else {
             System.out.println("Jumlah saldo tidak valid.");
         }
-        scanner.close();
     }
 
-    public void checkout(Pengguna pengguna) {
+    private void checkout(Pengguna pengguna) {
         int total = hitungTotal(pengguna);
         System.out.println("Total: Rp" + total);
 
@@ -165,7 +189,7 @@ class TokoOnline {
         }
     }
 
-    public int hitungTotal(Pengguna pengguna) {
+    private int hitungTotal(Pengguna pengguna) {
         int total = 0;
         for (Produk produk : pengguna.keranjang) {
             total += produk.harga;

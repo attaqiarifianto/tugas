@@ -12,6 +12,6 @@ class Pengguna {
         this.username = username;
         this.password = password;
         this.saldo = saldo;
-        this.keranjang = new ArrayList<>();
+        keranjang = new ArrayList<>();
     }
 }
