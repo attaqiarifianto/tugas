@@ -1,4 +1,4 @@
-package TokoOnline;
+package TokoOnlineJava;
 
 public class Main {
     public static void main(String[] args) {
