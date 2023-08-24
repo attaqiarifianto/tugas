@@ -1,4 +1,4 @@
-package TokoOnlineJava;
+package TokoOnline;
 
 import java.util.*;
 

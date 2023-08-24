@@ -1,4 +1,4 @@
-package TokoOnlineJava;
+package TokoOnline;
 
 class Produk {
     String nama;
