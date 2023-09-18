@@ -1,13 +1,13 @@
 <?php
 $hostname = "localhost";
 $username = "root";
-$password = "";
+$password1 = "";
 $database = "perpus_native";
 
-$koneksi = mysqli_connect($hostname, $username, $password, $database);
+$koneksi = mysqli_connect($hostname, $username, $password1, $database);
 
 if ($koneksi) {
-    echo "Koneksi ke database berhasil";
+    echo "";
 } else {
-    die("Koneksi ke database gagal") . mysqli_connect_error();
+    die("<script>alert('Koneksi ke database gagal')</script>") . mysqli_connect_error();
 }
